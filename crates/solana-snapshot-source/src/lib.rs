@@ -105,14 +105,18 @@ impl FilterOwnerKeyLookup {
         Self(Arc::new(lookup))
     }
 
-    fn lookup_by_owner(&self, owner: &Pubkey) -> Option<Vec<String>> { self.0.get(owner).cloned() }
+    fn lookup_by_owner(&self, owner: &Pubkey) -> Option<Vec<String>> {
+        self.0.get(owner).cloned()
+    }
 }
 
 #[async_trait]
 impl SourceTrait for SolanaSnapshotSource {
     type Config = SolanaSnapshotConfig;
 
-    fn new(config: Self::Config, filters: Filters) -> Self { Self { config, filters } }
+    fn new(config: Self::Config, filters: Filters) -> Self {
+        Self { config, filters }
+    }
 
     async fn connect(
         &self,
